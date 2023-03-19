@@ -1,0 +1,94 @@
+﻿@model IEnumerable<TinTucCongNghe.Models.Menu>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <span class="breadcrumb-item active">Danh sách menu</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+                <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminMenus" asp-action="Create"><i class="anticon anticon-plus-circle m-r-5"></i><span>Thêm menu</span></a>
+            </div>
+            <div class="col-lg-4 text-right">
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên menu</th>
+                        <th>Tên Controller</th>
+                        <th>Tên Action</th>
+                        <th>Đường dẫn</th>
+                        <th>Menu cha</th>
+                        <th>Cấp menu</th>
+                        <th>Thứ tự sắp xếp</th>
+                        <th>Kích hoạt</th>
+                        <th>Vị trí</th>
+                        <th style="min-width:120px"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.MenuId</td>
+                                <td>@item.MenuName</td>
+                                <td>@item.ControllerName</td>
+                                <td>@item.ActionName</td>
+                                <td>@item.Link</td>
+                                <td>@item.ParentId</td>
+                                <td>@item.Levels</td>
+                                <td>@item.MenuOrder</td>
+                                <td>
+                                    @if (item.IsActive == true)
+                                    {
+
+
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>Public</div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-danger badge-dot m-r-10"></div>
+                                            <div>Non-Public</div>
+                                        </div>
+                                    }
+                                </td>
+                                <td>@item.Position</td>
+                                <td>
+                                    @*<a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminMenus" asp-action="Details" asp-route-id="@item.MenuId">Chi tiết</a>*@
+                                    <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminMenus" asp-action="Edit" asp-route-id="@item.MenuId">Sửa</a>
+                                    <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminMenus" asp-action="Delete" asp-route-id="@item.MenuId">Xóa</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+
+                </tbody>
+            </table>
+            @*<div aria-label="Page navigation example">
+            <ul class="pagination">
+            <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminPages" asp-action="Index" />
+            </ul>
+            </div>*@
+        </div>
+    </div>
+</div>

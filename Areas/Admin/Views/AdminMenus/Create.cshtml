@@ -1,0 +1,76 @@
+﻿@model TinTucCongNghe.Models.Menu
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminMenus" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Danh sách menu</a>
+            <span class="breadcrumb-item active">Tạo mới menu</span>
+        </nav>
+    </div>
+</div>
+
+
+<div class="card-body">
+    <h4>Tạo mới menu</h4>
+    <div class="m-t-25" style="max-width: 700px">
+        <form asp-controller="AdminMenus" asp-action="Create" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Tên menu</label>
+                    <input type="text" class="form-control" asp-for="MenuName">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Menu cha</label>
+                    <input type="text" class="form-control" asp-for="ParentId">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Tên Controller</label>
+                    <input type="text" class="form-control" asp-for="ControllerName">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Tên Action</label>
+                    <input type="text" class="form-control" asp-for="ActionName">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputEmail4">Đường dẫn</label>
+                    <input type="text" class="form-control" asp-for="Link">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Cấp menu</label>
+                    <input type="text" class="form-control" asp-for="Levels">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Vị trí sắp xếp</label>
+                    <input type="text" class="form-control" asp-for="MenuOrder">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <div class="checkbox">
+                        <input asp-for="IsActive" type="checkbox">
+                        <label for="IsActive">Kích hoạt</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Vị trí</label>
+                    <input type="text" class="form-control" asp-for="Position">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Tạo mới</button>
+        </form>
+    </div>
+
+</div>
+
