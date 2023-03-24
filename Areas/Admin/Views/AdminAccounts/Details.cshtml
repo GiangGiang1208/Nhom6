@@ -1,0 +1,51 @@
+﻿@model TinTucCongNghe.Models.Account
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+            <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Quản lí tài khoản quản trị</a>
+            <span class="breadcrumb-item active">Chi tiết tài khoản quản trị</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin tài khoản quản trị</h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.AccountId</td>
+                </tr>
+                <tr>
+                    <td>Tên:</td>
+                    <td>@Model.UseName</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td>Mật khẩu:</td>
+                    <td>@Model.Password</td>
+                </tr>
+                <tr>
+                    <td>Active:</td>
+                    <td>@Html.DisplayFor(model => model.IsActive)</td>
+                </tr>
+                <tr>
+                    <td>Quyền truy cập:</td>
+                    <td>@Model.Role.RoleName</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-danger btn-tone m-r-5" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Delete" asp-route-id="@Model.AccountId">Xóa</a>
+</div>

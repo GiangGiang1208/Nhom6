@@ -1,0 +1,43 @@
+﻿@model TinTucCongNghe.Models.Post
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+        <div class="header-sub-title">
+            <nav class="breadcrumb breadcrumb-dash">
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Trang chủ</a>
+                <a asp-area="Admin" asp-controller="AdminPosts" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Quản lí tin tức</a>
+                <span class="breadcrumb-item active">Xóa tin tức</span>
+            </nav>
+        </div>
+    </div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin </h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model.PostId</td>
+                </tr>
+                <tr>
+                    <td>Tiêu đề:</td>
+                    <td class="text-dark font-weight-semibold">@Model.Title</td>
+                </tr>
+                <tr>
+                    <td>Xác nhận xóa:</td>
+                    <td>
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="PostId" />
+                            <input type="submit" value="Xóa" class="btn btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

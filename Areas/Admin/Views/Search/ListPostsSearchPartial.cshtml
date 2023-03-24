@@ -1,0 +1,44 @@
+﻿@model List<Post>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.PostId
+            </td>
+            <td>
+                <img style="width:60px; height:60px" src="~/images/tintuc/@item.Thumb" />
+            </td>
+            <td>
+                <div class="d-flex align-items-center">
+                    <img class="img-fluid rounded" src="assets/images/others/thumb-9.jpg" style="max-width: 60px" alt="">
+                    <h6 class="m-b-0 m-l-10">@item.Title</h6>
+                </div>
+            </td>
+            <td>@item.Cat.CatName</td>
+            <td>
+                @if (item.IsPublish)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Publish</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Non-Publish</div>
+                    </div>
+                }
+
+            <td>
+                <a class="btn btn-primary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Details" asp-route-id="@item.PostId">Chi tiết</a>
+                <a class="btn btn-secondary btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@item.PostId">Sửa</a>
+                <a class="btn btn-success btn-tone m-r-5" asp-area="Admin" asp-controller="AdminProducts" asp-action="Delete" asp-route-id="@item.PostId">Xóa</a>
+
+            </td>
+        </tr>
+    }
+}

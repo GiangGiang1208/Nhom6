@@ -12,17 +12,37 @@
                     </span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li class="active">
+                    <li>
                         <a asp-area="Admin" asp-controller="AdminMenus" asp-action="Index">Menu</a>
                     </li>
                     <li>
                         <a asp-area="Admin" asp-controller="AdminAdvs" asp-action="Index">Quảng cáo</a>
                     </li>
+                    
                     <li>
-                        <a href="index-e-commerce.html">E-commerce</a>
+                        <a asp-area="Admin" asp-controller="AdminRoles" asp-action="Index">Quyền truy cập</a>
                     </li>
                     <li>
-                        <a href="index-projects.html">Projects</a>
+                        <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index">Tài khoản quản lí</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-hdd"></i>
+                    </span>
+                    <span class="title">Bài viết</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Bài viết</a>
+                    </li>
+                    <li>
+                        <a asp-area="Admin" asp-controller="AdminCategories" asp-action="Index">Danh mục bài viết</a>
                     </li>
                 </ul>
             </li>
@@ -123,46 +143,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" href="javascript:void(0);">
-                    <span class="icon-holder">
-                        <i class="anticon anticon-hdd"></i>
-                    </span>
-                    <span class="title">Components</span>
-                    <span class="arrow">
-                        <i class="arrow-icon"></i>
-                    </span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a href="accordion.html">Accordion</a>
-                    </li>
-                    <li>
-                        <a href="carousel.html">Carousel</a>
-                    </li>
-                    <li>
-                        <a href="dropdown.html">Dropdown</a>
-                    </li>
-                    <li>
-                        <a href="modals.html">Modals</a>
-                    </li>
-                    <li>
-                        <a href="toasts.html">Toasts</a>
-                    </li>
-                    <li>
-                        <a href="popover.html">Popover</a>
-                    </li>
-                    <li>
-                        <a href="slider-progress.html">Slider & Progress</a>
-                    </li>
-                    <li>
-                        <a href="tabs.html">Tabs</a>
-                    </li>
-                    <li>
-                        <a href="tooltips.html">Tooltips</a>
-                    </li>
-                </ul>
-            </li>
+            
             <li class="nav-item dropdown">
                 <a class="dropdown-toggle" href="javascript:void(0);">
                     <span class="icon-holder">

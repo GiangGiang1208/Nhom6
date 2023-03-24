@@ -1,52 +1,38 @@
 ﻿@model TinTucCongNghe.Models.Category
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Sửa";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Edit</h1>
-
-<h4>Category</h4>
+<h4>Menu</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CatId" />
-            <div class="form-group">
-                <label asp-for="CatName" class="control-label"></label>
-                <input asp-for="CatName" class="form-control" />
-                <span asp-validation-for="CatName" class="text-danger"></span>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputEmail4">Tên danh mục</label>
+                    <input type="text" class="form-control" asp-for="CatName">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Sắp xếp</label>
+                    <input type="text" class="form-control" asp-for="Ordering">
+                </div>
+                <div class="form-group col-md-6">
+                    <div class="checkbox">
+                        <input asp-for="IsPublish" type="checkbox">
+                        <label for="IsPublish">Publish</label>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
-                <label asp-for="Alias" class="control-label"></label>
-                <input asp-for="Alias" class="form-control" />
-                <span asp-validation-for="Alias" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsPublish" /> @Html.DisplayNameFor(model => model.IsPublish)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ordering" class="control-label"></label>
-                <input asp-for="Ordering" class="form-control" />
-                <span asp-validation-for="Ordering" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Thumb" class="control-label"></label>
-                <input asp-for="Thumb" class="form-control" />
-                <span asp-validation-for="Thumb" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Lưu" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
