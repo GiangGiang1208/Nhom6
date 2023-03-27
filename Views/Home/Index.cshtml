@@ -1,87 +1,32 @@
-﻿@{
+﻿@model TinTucCongNghe.ModelViews.HomeViewVM
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Post> allPost = ViewBag.AllPosts;
 }
 
 <div class="caroufredsel_wrapper caroufredsel_wrapper_slider">
     <ul class="slider">
-        <li class="slide">
-            <img src='~/images/slider/image_01.jpg' alt='img'>
-            <div class="slider_content_box">
-                <ul class="post_details simple">
-                    <li class="category"><a href="category_health.html" title="HEALTH">HEALTH</a></li>
-                    <li class="date">
-                        10:11 PM, Feb 02
-                    </li>
-                </ul>
-                <h2><a href="post.html" title="Nuclear Fusion Closer to Becoming a Reality">Nuclear Fusion Closer to Becoming a Reality</a></h2>
-                <p class="clearfix">Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-            </div>
-        </li>
-        <li class="slide">
-            <img src='~/images/slider/image_02.jpg' alt='img'>
-            <div class="slider_content_box">
-                <ul class="post_details simple">
-                    <li class="category"><a href="category_world.html" title="WORLD">WORLD</a></li>
-                    <li class="date">
-                        18:25 PM, Feb 21
-                    </li>
-                </ul>
-                <h2><a href="post.html" title="Climate Change Debate While Britain Floods">Climate Change Debate While Britain Floods</a></h2>
-                <p class="clearfix">Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-            </div>
-        </li>
-        <li class="slide">
-            <img src='~/images/slider/image_03.jpg' alt='img'>
-            <div class="slider_content_box">
-                <ul class="post_details simple">
-                    <li class="category"><a href="category_health.html" title="HEALTH">HEALTH</a></li>
-                    <li class="date">
-                        10:11 PM, Feb 02
-                    </li>
-                </ul>
-                <h2><a href="post.html" title="The Public Health Crisis Hiding in Our Food">The Public Health Crisis Hiding in Our Food</a></h2>
-                <p class="clearfix">Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-            </div>
-        </li>
-        <li class="slide">
-            <img src='~/images/slider/image_01.jpg' alt='img'>
-            <div class="slider_content_box">
-                <ul class="post_details simple">
-                    <li class="category"><a href="category_world.html" title="WORLD">WORLD</a></li>
-                    <li class="date">
-                        18:25 PM, Feb 21
-                    </li>
-                </ul>
-                <h2><a href="post.html" title="Built on Brotherhood, Club Lives Up to Name">Built on Brotherhood, Club Lives Up to Name</a></h2>
-                <p class="clearfix">Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-            </div>
-        </li>
-        <li class="slide">
-            <img src='~/images/slider/image_02.jpg' alt='img'>
-            <div class="slider_content_box">
-                <ul class="post_details simple">
-                    <li class="category"><a href="category_health.html" title="HEALTH">HEALTH</a></li>
-                    <li class="date">
-                        10:11 PM, Feb 02
-                    </li>
-                </ul>
-                <h2><a href="post.html" title="New Painkiller Rekindles Addiction Concerns">New Painkiller Rekindles Addiction Concerns</a></h2>
-                <p class="clearfix">Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-            </div>
-        </li>
-        <li class="slide">
-            <img src='~/images/slider/image_03.jpg' alt='img'>
-            <div class="slider_content_box">
-                <ul class="post_details simple">
-                    <li class="category"><a href="category_health.html" title="HEALTH">HEALTH</a></li>
-                    <li class="date">
-                        10:11 PM, Feb 02
-                    </li>
-                </ul>
-                <h2><a href="post.html" title="High Altitudes May Aid Weight Control">High Altitudes May Aid Weight Control</a></h2>
-                <p class="clearfix">Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-            </div>
-        </li>
+        @if (Model.TinHots != null)
+        {
+            foreach (var item in Model.TinHots)
+            {
+                string url = $"/{item.Alias}-{item.PostId}.html";
+                <li class="slide">
+                    <img src='~/images/tintuc/@item.Thumb' alt='@item.Title'>
+                    <div class="slider_content_box">
+                        <ul class="post_details simple">
+                            <li class="category"><a href="category_health.html" title="HEALTH"></a></li>
+                            <li class="date">
+                                @item.DateCreated.Value.Hour:@item.DateCreated.Value.Minute, @item.DateCreated.Value.Day THÁNG @item.DateCreated.Value.Month
+                            </li>
+                        </ul>
+                        <h2><a href="@url" title="@item.Title">@item.Title</a></h2>
+                        <p class="clearfix">@item.Scontent</p>
+                    </div>
+                </li>
+            }
+        }
     </ul>
 </div>
 <div class="page">
@@ -90,83 +35,67 @@
     <div class="page_layout page_margin_top clearfix">
         <div class="row">
             <div class="column column_2_3">
-                <h4 class="box_header">Latest Posts</h4>
+                <h4 class="box_header">Tin mới</h4>
                 <div class="row">
-                    <ul class="blog column column_1_2">
-                        <li class="post">
-                            <a href="post.html" title="Nuclear Fusion Closer to Becoming a Reality">
-                                <img src='~/images/samples/330x242/image_01.jpg' alt='img'>
-                            </a>
-                            <h2 class="with_number">
-                                <a href="post.html" title="Nuclear Fusion Closer to Becoming a Reality">Nuclear Fusion Closer to Becoming a Reality</a>
-                                <a class="comments_number" href="post.html#comments_list" title="2 comments">2<span class="arrow_comments"></span></a>
-                            </h2>
-                            <ul class="post_details">
-                                <li class="category"><a href="category_world.html" title="WORLD">WORLD</a></li>
-                                <li class="date">
-                                    10:11 PM, Feb 02
+                    @if (Model.TinMois1 != null)
+                    {
+
+                        <ul class="blog column column_1_2">
+                            @foreach (var item in Model.TinMois1)
+                            {
+                                string url = $"/{item.Alias}-{item.PostId}.html";
+                                <li class="post">
+                                    <a href="@url">
+                                        <img src='~/images/tintuc/@item.Thumb' alt='img'>
+                                    </a>
+                                    <h2 class="with_number">
+                                        <a href="@url">@item.Title</a>
+                                        <a class="comments_number" href="post.html#comments_list" title="2 comments">2<span class="arrow_comments"></span></a>
+                                    </h2>
+                                    <ul class="post_details">
+                                        <li class="category"><a href="" title="WORLD"></a></li>
+                                        <li class="date">
+                                            @item.DateCreated.Value.Hour:@item.DateCreated.Value.Minute, @item.DateCreated.Value.Day THÁNG @item.DateCreated.Value.Month
+                                        </li>
+                                    </ul>
+                                    <p>@item.Scontent</p>
+                                    <a class="read_more" href="@url"><span class="arrow"></span><span>XEM THÊM</span></a>
                                 </li>
-                            </ul>
-                            <p>Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-                            <a class="read_more" href="post.html" title="Read more"><span class="arrow"></span><span>READ MORE</span></a>
-                        </li>
-                        <li class="post">
-                            <a href="post_quote.html" title="High Altitudes May Aid Weight Control">
-                                <img src='~/images/samples/330x242/image_02.jpg' alt='img'>
-                            </a>
-                            <h2 class="with_number">
-                                <a href="post_quote.html" title="High Altitudes May Aid Weight Control">High Altitudes May Aid Weight Control</a>
-                                <a class="comments_number" href="post.html#comments_list" title="2 comments">2<span class="arrow_comments"></span></a>
-                            </h2>
-                            <ul class="post_details">
-                                <li class="category"><a href="category_health.html" title="HEALTH">HEALTH</a></li>
-                                <li class="date">
-                                    10:11 PM, Feb 02
+                            }
+                        </ul>
+                    }
+                    @if (Model.TinMois2 != null)
+                    {
+                        <ul class="blog column column_1_2">
+                            @foreach(var item in Model.TinMois2)
+                            {
+                               string url = $"/{item.Alias}-{item.PostId}.html";
+                                <li class="post">
+                                    <a href="@url">
+                                        <img src='~/images/tintuc/@item.Thumb' alt='img'>
+                                    </a>
+                                    <h2 class="with_number">
+                                        <a href="@url">@item.Title</a>
+                                        <a class="comments_number" href="post.html#comments_list" title="2 comments">2<span class="arrow_comments"></span></a>
+                                    </h2>
+                                    <ul class="post_details">
+                                        <li class="category"><a href="" title="WORLD"></a></li>
+                                        <li class="date">
+                                            @item.DateCreated.Value.Hour:@item.DateCreated.Value.Minute, @item.DateCreated.Value.Day THÁNG @item.DateCreated.Value.Month
+                                        </li>
+                                    </ul>
+                                    <p>@item.Scontent</p>
+                                    <a class="read_more" href="@url"><span class="arrow"></span><span>XEM THÊM</span></a>
                                 </li>
-                            </ul>
-                            <p>Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-                            <a class="read_more" href="post_quote.html" title="Read more"><span class="arrow"></span><span>READ MORE</span></a>
-                        </li>
-                    </ul>
-                    <ul class="blog column column_1_2">
-                        <li class="post">
-                            <a href="post.html" title="Built on Brotherhood, Club Lives Up to Name">
-                                <img src='~/images/samples/330x242/image_04.jpg' alt='img'>
-                            </a>
-                            <h2 class="with_number">
-                                <a href="post.html" title="Built on Brotherhood, Club Lives Up to Name">Built on Brotherhood, Club Lives Up to Name</a>
-                                <a class="comments_number" href="post.html#comments_list" title="2 comments">2<span class="arrow_comments"></span></a>
-                            </h2>
-                            <ul class="post_details">
-                                <li class="category"><a href="category_science.html" title="SCIENCE">SCIENCE</a></li>
-                                <li class="date">
-                                    10:11 PM, Feb 02
-                                </li>
-                            </ul>
-                            <p>Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-                            <a class="read_more" href="post.html" title="Read more"><span class="arrow"></span><span>READ MORE</span></a>
-                        </li>
-                        <li class="post">
-                            <a href="post_video.html" title="Struggling Nuremberg Sack Coach Verbeek">
-                                <span class="icon video"></span>
-                                <img src='~/images/samples/330x242/image_03.jpg' alt='img'>
-                            </a>
-                            <h2 class="with_number">
-                                <a href="post_video.html" title="Struggling Nuremberg Sack Coach Verbeek">Struggling Nuremberg Sack Coach Verbeek</a>
-                                <a class="comments_number" href="post_video.html#comments_list" title="2 comments">2<span class="arrow_comments"></span></a>
-                            </h2>
-                            <ul class="post_details">
-                                <li class="category"><a href="category_sports.html" title="SPORTS">SPORTS</a></li>
-                                <li class="date">
-                                    10:11 PM, Feb 02
-                                </li>
-                            </ul>
-                            <p>Maecenas mauris elementum, est morbi interdum cursus at elite imperdiet libero. Proin odios dapibus integer an nulla augue pharetra cursus.</p>
-                            <a class="read_more" href="post_video.html" title="Read more"><span class="arrow"></span><span>READ MORE</span></a>
-                        </li>
-                    </ul>
+                            }
+                        </ul>
+                    }
+
+
+
                 </div>
-                <div class="row page_margin_top_section">
+
+@*                <div class="row page_margin_top_section">
                     <h4 class="box_header">Posts Carousel</h4>
                     <div class="horizontal_carousel_container page_margin_top">
                         <ul class="blog horizontal_carousel autoplay-1 scroll-1 navigation-1 easing-easeInOutQuint duration-750">
@@ -223,7 +152,7 @@
                     </div>
                 </div>
                 <div class="row page_margin_top_section">
-                    <h4 class="box_header">Latest From Health</h4>
+                    <h4 class="box_header">Tin tức</h4>
                     <div class="row">
                         <ul class="blog column column_1_2">
                             <li class="post">
@@ -618,7 +547,7 @@
                         </ul>
                         <a class="more page_margin_top" href="#">READ MORE</a>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="column column_1_3">
                 <h4 class="box_header">Recommended</h4>
@@ -743,171 +672,8 @@
                         </li>
                     </ul>
                 </div>
-                <div class="tabs no_scroll page_margin_top_section clearfix">
-                    <ul class="tabs_navigation clearfix">
-                        <li>
-                            <a href="#sidebar-most-read" title="Most Read">
-                                Most Read
-                            </a>
-                            <span></span>
-                        </li>
-                        <li>
-                            <a href="#sidebar-most-commented" title="Commented">
-                                Commented
-                            </a>
-                            <span></span>
-                        </li>
-                    </ul>
-                    <div id="sidebar-most-read">
-                        <ul class="blog rating page_margin_top clearfix">
-                            <li class="post">
-                                <a href="post_quote.html" title="Nuclear Fusion Closer to Becoming a Reality">
-                                    <img src='~/images/samples/510x187/image_12.jpg' alt='img'>
-                                </a>
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="6 257"></span>
-                                    <h5><a href="post_quote.html" title="New Painkiller Rekindles Addiction Concerns">New Painkiller Rekindles Addiction Concerns</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_health.html" title="HEALTH">HEALTH</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="post">
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="5 062"></span>
-                                    <h5><a href="post.html" title="New Painkiller Rekindles Addiction Concerns">New Painkiller Rekindles Addiction Concerns</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_world.html" title="WORLD">WORLD</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="post">
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="4 778"></span>
-                                    <h5><a href="post.html" title="Seeking the Right Chemistry, Drug Makers Hunt for Mergers">Seeking the Right Chemistry, Drug Makers Hunt for Mergers</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_sports.html" title="SPORTS">SPORTS</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="post">
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="754"></span>
-                                    <h5><a href="post_quote_2.html" title="Study Linking Illnes and Salt Leaves Researchers Doubtful">Study Linking Illnes and Salt Leaves Researchers Doubtful</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_science.html" title="SCIENCE">SCIENCE</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="post">
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="52"></span>
-                                    <h5><a href="post_small_image.html" title="Syrian Civilians Trapped for Months Continue to be Evacuated">Syrian Civilians Trapped for Months Continue to be Evacuated</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_science.html" title="SCIENCE">SCIENCE</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                        <a class="more page_margin_top" href="#">SHOW MORE</a>
-                    </div>
-                    <div id="sidebar-most-commented">
-                        <ul class="blog rating page_margin_top clearfix">
-                            <li class="post">
-                                <a href="post.html" title="Nuclear Fusion Closer to Becoming a Reality">
-                                    <img src='~/images/samples/510x187/image_02.jpg' alt='img'>
-                                </a>
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="70"></span>
-                                    <h5><a href="post.html" title="New Painkiller Rekindles Addiction Concerns">New Painkiller Rekindles Addiction Concerns</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_health.html" title="HEALTH">HEALTH</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="post">
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="62"></span>
-                                    <h5><a href="post.html" title="New Painkiller Rekindles Addiction Concerns">New Painkiller Rekindles Addiction Concerns</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_world.html" title="WORLD">WORLD</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="post">
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="30"></span>
-                                    <h5><a href="post.html" title="Seeking the Right Chemistry, Drug Makers Hunt for Mergers">Seeking the Right Chemistry, Drug Makers Hunt for Mergers</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_sports.html" title="SPORTS">SPORTS</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="post">
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="25"></span>
-                                    <h5><a href="post.html" title="Study Linking Illnes and Salt Leaves Researchers Doubtful">Study Linking Illnes and Salt Leaves Researchers Doubtful</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_science.html" title="SCIENCE">SCIENCE</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="post">
-                                <div class="post_content">
-                                    <span class="number animated_element" data-value="4"></span>
-                                    <h5><a href="post_soundcloud.html" title="Syrian Civilians Trapped for Months Continue to be Evacuated">Syrian Civilians Trapped for Months Continue to be Evacuated</a></h5>
-                                    <ul class="post_details simple">
-                                        <li class="category"><a href="category_science.html" title="SCIENCE">SCIENCE</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                        <a class="more page_margin_top" href="#">SHOW MORE</a>
-                    </div>
-                </div>
-                <h4 class="box_header page_margin_top_section">Top Authors</h4>
-                <ul class="authors rating clearfix">
-                    <li class="author">
-                        <a class="thumb" href="author.html" title="Debora Hilton">
-                            <img src='~/images/samples/Team_100x100/image_01.jpg' alt='img'>
-                            <span class="number animated_element" data-value="34"></span>
-                        </a>
-                        <div class="details">
-                            <h5><a href="author.html" title="Debora Hilton">Debora Hilton</a></h5>
-                            <h6>EDITOR</h6>
-                        </div>
-                    </li>
-                    <li class="author">
-                        <a class="thumb" href="author.html" title="Anna Shubina">
-                            <img src='~/images/samples/Team_100x100/image_02.jpg' alt='img'>
-                            <span class="number animated_element" data-value="25"></span>
-                        </a>
-                        <div class="details">
-                            <h5><a href="author.html" title="Anna Shubina">Anna Shubina</a></h5>
-                            <h6>EDITOR</h6>
-                        </div>
-                    </li>
-                    <li class="author">
-                        <a class="thumb" href="author.html" title="Liam Holden">
-                            <img src='~/images/samples/Team_100x100/image_03.jpg' alt='img'>
-                            <span class="number animated_element" data-value="9"></span>
-                        </a>
-                        <div class="details">
-                            <h5><a href="author.html" title="Liam Holden">Liam Holden</a></h5>
-                            <h6>PUBLISHER</h6>
-                        </div>
-                    </li>
-                    <li class="author">
-                        <a class="thumb" href="author.html" title="Heather Dale">
-                            <img src='~/images/samples/Team_100x100/image_04.jpg' alt='img'>
-                            <span class="number animated_element" data-value="2"></span>
-                        </a>
-                        <div class="details">
-                            <h5><a href="author.html" title="Heather Dale">Heather Dale</a></h5>
-                            <h6>ILLUSTRATOR</h6>
-                        </div>
-                    </li>
-                </ul>
+
+
                 <h4 class="box_header page_margin_top_section">Science</h4>
                 <ul class="blog small clearfix">
                     <li class="post">
